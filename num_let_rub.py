@@ -24,7 +24,10 @@ if __name__ == '__main__':
     print('\nВведите число: ', end = '')
     number = input()
     number = number.replace(',', '.').replace(' ', '.')
-    rubli = number.split('.')[0].lstrip('0')[::-1]
+    if number.split('.')[0].lstrip('0'):
+        rubli = number.split('.')[0].lstrip('0')[::-1]
+    else:
+        rubli = '0'
     try:
         kopeyki = number.split('.')[1][::-1].zfill(2)
     except:
@@ -34,7 +37,7 @@ if __name__ == '__main__':
         print('\nЧисло больше или равно триллиону. Слишком большое.\n')
         exit()
 
-    # RUBLI
+    # РУБЛИ
     res = ''
     c = 0
     for x in rubli:
@@ -62,7 +65,7 @@ if __name__ == '__main__':
     res += 'рубл' + rubl[five(int(y))] + ','
 
 
-    # KOPEYKI
+    # КОПЕЙКИ
     res1 = ''
     c = 0
     for x in kopeyki:
@@ -79,6 +82,9 @@ if __name__ == '__main__':
         y = kopeyki[1] + kopeyki[0]
     else:
         y = kopeyki[0]
+    
+    #res1 = kopeyki[::-1] + ' ' # копейки числом
+
     res1 += 'копе' + kope[five(int(y))]
 
     print(res, res1, '\n')

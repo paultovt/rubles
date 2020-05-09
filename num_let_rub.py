@@ -82,6 +82,9 @@ if __name__ == '__main__':
         y = kopeyki[1] + kopeyki[0]
     else:
         y = kopeyki[0]
+
+    if not res1:
+        res1 = 'ноль '
     
     #res1 = kopeyki[::-1] + ' ' # копейки числом
 

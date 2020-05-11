@@ -23,7 +23,7 @@ def five(x):
 if __name__ == '__main__':
     print('\nВведите число: ', end = '')
     number = input()
-    number = number.replace(',', '.').replace(' ', '.')
+    number = number.replace(',', '.')
     if number.split('.')[0].lstrip('0'):
         rubli = number.split('.')[0].lstrip('0')[::-1]
     else:

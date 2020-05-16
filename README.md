@@ -1,6 +1,6 @@
 # Программа перевода рублёвой суммы из числового вида в пропись
 
-[![demo](https://asciinema.org/a/330644.svg)](https://asciinema.org/a/330644?autoplay=1)
+![example](https://raw.githubusercontent.com/paultovt/num-let-rub/master/num_let_rub.gif)
 
 Допускаю вероятность, что алгоритм не оптимален. Просто решил ради интереса попробовать вникнуть в задачу и написать программу, не глядя на готовые решения.
 

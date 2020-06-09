@@ -39,8 +39,7 @@ if __name__ == '__main__':
 
     # РУБЛИ
     res = ''
-    c = 0
-    for x in rubli:
+    for c, x in enumerate(rubli):
         if ((len(rubli) > 1 and (c + 1 == 1)) or (len(rubli) > 4 and (c + 1 == 4)) or (len(rubli) > 7 and (c + 1 == 7)) or (len(rubli) > 10 and (c + 1 == 10))) and rubli[c + 1] == '1':
             x = rubli[c + 1] + x
         x = int(x)
@@ -56,8 +55,6 @@ if __name__ == '__main__':
         elif c in [3, 6, 9]:
             res = tmm[c // 3 - 1] + tmm2[c // 3 - 1][five(x)] + res
 
-        c += 1
-
     if len(rubli) > 1 and rubli[1] == '1':
         y = rubli[1] + rubli[0]
     else:
@@ -67,16 +64,13 @@ if __name__ == '__main__':
 
     # КОПЕЙКИ
     res1 = ''
-    c = 0
-    for x in kopeyki:
+    for c, x in enumerate(kopeyki):
         if (len(kopeyki) > 1 and (c + 1 == 1)) and kopeyki[c + 1] == '1':
             x = kopeyki[c + 1] + x
         x = int(x)
 
         if (x or len(kopeyki) == 1) and words[c % 2][x]:
             res1 = ('две' if c == 0 and x == 2 else ('одна' if c == 0 and x == 1 else str(words[c % 2][x])))  + ' ' + res1
-
-        c += 1
 
     if len(kopeyki) > 1 and kopeyki[1] == '1':
         y = kopeyki[1] + kopeyki[0]

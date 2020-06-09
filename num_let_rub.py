@@ -19,7 +19,6 @@ def five(x):
     else:
         return x
 
-
 if __name__ == '__main__':
     print('\nВведите число: ', end = '')
     number = input()
@@ -60,7 +59,6 @@ if __name__ == '__main__':
     else:
         y = rubli[0]
     res += 'рубл' + rubl[five(int(y))] + ','
-
 
     # КОПЕЙКИ
     res1 = ''

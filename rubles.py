@@ -13,16 +13,9 @@ words = [ [ 'ноль', 'один', 'два', 'три', 'четыре', 'пят�
         [ '', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто' ],
         [ '', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот' ] ]
 
-def five(x):
-    if x > 5:
-        return 5
-    else:
-        return x
-
-if __name__ == '__main__':
-    print('\nВведите число: ', end = '')
-    number = input()
-    number = number.replace(',', '.')
+def rubles(number, kop_as_num = False):
+    number = str(number).replace(',', '.')
+    number = str(round(float(number), 2))
     if number.split('.')[0].lstrip('0'):
         rubli = number.split('.')[0].lstrip('0')[::-1]
     else:
@@ -36,7 +29,7 @@ if __name__ == '__main__':
         print('\nЧисло больше или равно триллиону. Слишком большое.\n')
         exit()
 
-    # РУБЛИ
+    # рубли
     res = ''
     for c, x in enumerate(rubli):
         if ((len(rubli) > 1 and (c + 1 == 1)) or (len(rubli) > 4 and (c + 1 == 4)) or (len(rubli) > 7 and (c + 1 == 7)) or (len(rubli) > 10 and (c + 1 == 10))) and rubli[c + 1] == '1':
@@ -50,17 +43,17 @@ if __name__ == '__main__':
             res = res_tmp[:-1]
 
         if (x or len(rubli) == 1) and words[c % 3][x]:
-            res = ('две' if c == 3 and x == 2 else ('одна' if c == 3 and x == 1 else str(words[c % 3][x]))) + (' ' + tmm[c // 3 - 1] + tmm2[c // 3 - 1][five(x)] if c in [3, 6, 9] else ' ') + res
+            res = ('две' if c == 3 and x == 2 else ('одна' if c == 3 and x == 1 else str(words[c % 3][x]))) + (' ' + tmm[c // 3 - 1] + tmm2[c // 3 - 1][5 if x > 5 else x] if c in [3, 6, 9] else ' ') + res
         elif c in [3, 6, 9]:
-            res = tmm[c // 3 - 1] + tmm2[c // 3 - 1][five(x)] + res
+            res = tmm[c // 3 - 1] + tmm2[c // 3 - 1][5 if x > 5 else x] + res
 
     if len(rubli) > 1 and rubli[1] == '1':
         y = rubli[1] + rubli[0]
     else:
         y = rubli[0]
-    res += 'рубл' + rubl[five(int(y))] + ','
+    res += 'рубл' + rubl[5 if int(y) > 5 else int(y)] #+ ','
 
-    # КОПЕЙКИ
+    # копейки
     res1 = ''
     for c, x in enumerate(kopeyki):
         if (len(kopeyki) > 1 and (c + 1 == 1)) and kopeyki[c + 1] == '1':
@@ -78,8 +71,17 @@ if __name__ == '__main__':
     if not res1:
         res1 = 'ноль '
     
-    #res1 = kopeyki[::-1] + ' ' # копейки числом
+    # копейки числом
+    if kop_as_num:
+        res1 = '{:02}'.format(kopeyki[::-1]) + ' '
 
-    res1 += 'копе' + kope[five(int(y))]
+    res1 += 'копе' + kope[5 if int(y) > 5 else int(y)]
 
-    print(res, res1, '\n')
+    return(f"{res} {res1}")
+
+
+if __name__ == '__main__':
+    print('\nВведите число: ', end = '')
+    number = input()
+    print(rubles(number))
+    print(rubles(number, True))

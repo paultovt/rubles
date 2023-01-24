@@ -23,7 +23,7 @@ def rubles(number, kop_as_num = False):
     try:
         kopeyki = number.split('.')[1][::-1].zfill(2)
     except:
-        kopeyki = '0'
+        kopeyki = '00'
 
     if len(rubli) > 12:
         print('\nЧисло больше или равно триллиону. Слишком большое.\n')
